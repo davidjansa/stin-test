@@ -1,4 +1,5 @@
 Flask
 pytest
+pluggy
 Werkzeug
 Gunicorn
