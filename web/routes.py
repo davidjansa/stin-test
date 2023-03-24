@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session, jsonify
-from flask_login import current_user, login_required
 
 routes = Blueprint("routes", __name__)
 
