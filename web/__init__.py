@@ -2,7 +2,7 @@ from datetime import timedelta
 from flask import Flask
 
 def create_app():
-    app = Flask(__name__, template_folder="../templates", static_folder="../static")
+    app = Flask(__name__, template_folder="../front/templates", static_folder="../front/static")
 
     # app configuration
     app.config["SECRET_KEY"] = "stintest"
