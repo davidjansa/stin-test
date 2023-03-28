@@ -1,24 +1,31 @@
 from werkzeug.security import check_password_hash
-import datetime
+from datetime import datetime
 
-class BankAccount():
+class BankAccount:
     # static bid
-    bid = 0
+    bid = 1
 
-    def __init__(self, firstname : str, surname : str, password : str, email : str):
-        self.bid = f"{BankAccount.bid:04}"
+    def __init__(self, firstname : str, surname : str, password : str, email : str, bid : str = None):
+        if bid is None:
+            self.bid = f"{BankAccount.bid:04}"
+            BankAccount.bid += 1
+        else:
+            self.bid = bid
         self.firstname = firstname
         self.surname = surname
         self.password = password
         self.email = email
-
-        BankAccount.bid += 1
 
     # bid
 
     @property
     def bid(self):
         return self._bid
+    
+    @bid.setter
+    def bid(self, bid : str):
+        if bid != "":
+            self._bid = bid
     
     # firstname
     
@@ -78,7 +85,13 @@ class BankAccount():
     # __repr__
 
     def __repr__(self):
-        return f"{self.bid};{self.firstname};{self.surname};{self.password};{self.email}"
+        return {
+            "bid": self.bid,
+            "email": self.email,
+            "firstname": self.firstname,
+            "surname": self.surname,
+            "password": self.password
+            }
     
     # __str__
 
@@ -93,7 +106,25 @@ class Transaction():
     # __repr__
 
     def __repr__(self):
-        return f"{self.bid};{self.target_bid};{self.currency_code};{self.amount};{self.datetime}"
+        return {
+            "bid": self.bid,
+            "target-bid": self.target_bid,
+            "currency-code": self.currency_code,
+            "amount": self.amount,
+            "date": self.date
+            }
     
     # __str__
+
+class Balance():
+    def __init__(self, bid : str, currency_balance : dict):
+        self.bid = bid
+        self.currency_balance = currency_balance
     
+    # __repr__
+
+    def __repr__(self):
+        return {
+            "bid": self.bid,
+            "currency_balance": self.currency_balance
+            }
