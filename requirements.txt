@@ -5,5 +5,3 @@ Werkzeug
 datetime
 Gunicorn
 pymongo
-MIMEText
-random
