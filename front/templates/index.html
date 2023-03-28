@@ -4,9 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index_style.css')}}">
+    <title>STONKSTER - account</title>
 </head>
 <body>
-    <b>HELLO THERE</b>
+
+    <div>
+        {% block menu %}
+            <form method="post">
+                <ul class="nav-bar">
+                    <!-- new transaction menu -->
+                    <li class="nav-bar-item">
+                        <label for="tobid_input">TO BID: </label>
+                        <input id="tobid_input" type="text" name="tobid_input" placeholder="1234" maxlength="4">
+                    </li>
+                    <li class="nav-bar-item">
+                        <label for="curr_input">CURRENCY: </label>
+                        <input id="curr_input" type="text" name="curr_input">
+                    </li>
+                    <li class="nav-bar-item">
+                        <label for="amount_input">AMOUNT: </label>
+                        <input id="amount_input" type="number" name="amount_input" value="" min="0">
+                    </li>
+                    <li class="nav-bar-item logout">
+                        <input type="submit" value="SEND" formaction="/send_transaction">
+                    </li>
+                    <!-- account information menu -->
+                    <li class="nav-bar-item">
+                        <label for="bid_input">BID: </label>
+                        <input id="bid_input" type="text" name="bid_input" value="{{ session['ba']['bid'] }}" readonly>
+                    </li>
+                    <li class="nav-bar-item">
+                        <label for="name_input">NAME: </label>
+                        <input id="name_input" type="text" name="name_input" value="{{ session['ba']['name'] }}" readonly>
+                    </li>
+                    <li class="nav-bar-item logout">
+                        <input type="submit" value="LOGOUT" formaction="/logout">
+                    </li>
+                </ul>
+            </form>
+            <hr>
+        {% endblock %}
+    </div>
+    
 </body>
 </html>
