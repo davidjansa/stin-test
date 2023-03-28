@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_style.css')}}">
+    <title>STONKSTER - login</title>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="form-title">
+            <h1>WELCOME TO STONKSTER</h1>
+        </div>
+        <form action="/login" method="post">
+            <div>
+                <div class="form-row">
+                    <div class="form-item">
+                        <label for="email_input" class="form-label">E-mail</label>
+                    </div>
+                    <div class="form-item field">
+                        <input id="email_input" type="email" name="email_input" placeholder="user123@gmail.com" autocomplete="off" autofocus class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-item">
+                        <label for="password_input" class="form-label">Password</label>
+                    </div>
+                    <div class="form-item field">
+                        <input id="password_input" type="password" name="password_input" placeholder="●●●●●●" autocomplete="off" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-item">
+                        <label for="code_input" class="form-label">Code</label>
+                    </div>
+                    <div class="form-item field">
+                        <input id="code_input" type="password" name="code_input" placeholder="1234" autocomplete="off" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div id="send_code" class="form-item">
+                        <input type="submit" value="send code" formaction="/login_send_code">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div id="login" class="form-item">
+                        <input type="submit" value="login" formaction="/login_login">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        {% block invalid_user %}
+            {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    <div class="form-item">
+                        <p>{{message}}</p>
+                    </div>
+                {% endfor %}
+            {% endwith %}
+        {% endblock %}
+
+    </div>
+
+</body>
+</html>

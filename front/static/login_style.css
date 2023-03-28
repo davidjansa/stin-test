@@ -1,0 +1,32 @@
+.form-container {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 6%;
+    max-width: 70em;
+    margin: auto;
+    justify-content: center;
+}
+
+.form-row {
+    width: auto;
+}
+
+.form-item {
+    text-align: center;
+    padding-top: 0.5em;
+}
+
+.form-item.field {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+h1 {
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 0.5em;
+}
+
+#login {
+    padding-top: 2em;
+}
