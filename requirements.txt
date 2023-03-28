@@ -4,3 +4,7 @@ pluggy
 Werkzeug
 datetime
 Gunicorn
+pymongo
+smtplib
+MIMEText
+random
