@@ -16,34 +16,80 @@
                     <!-- new transaction menu -->
                     <li class="nav-bar-item">
                         <label for="tobid_input">TO BID: </label>
-                        <input id="tobid_input" type="text" name="tobid_input" placeholder="1234" maxlength="4">
+                        <input id="tobid_input" type="text" name="tobid_input" placeholder="1234" maxlength="4" size="4">
                     </li>
                     <li class="nav-bar-item">
                         <label for="curr_input">CURRENCY: </label>
-                        <input id="curr_input" type="text" name="curr_input">
+                        <input id="curr_input" name="curr_input" placeholder="EUR" list="curr-codes" maxlength="3">
                     </li>
                     <li class="nav-bar-item">
                         <label for="amount_input">AMOUNT: </label>
-                        <input id="amount_input" type="number" name="amount_input" value="" min="0">
+                        <input id="amount_input" type="number" name="amount_input" placeholder="100.90" min="0" step="0.001">
                     </li>
-                    <li class="nav-bar-item logout">
+                    <li class="nav-bar-item">
+                        <label for="trans_input">PRIMARY TRANSFER: </label>
+                        <input id="trans_input" type="checkbox" name="trans_input">
+                    </li>
+                    <li class="nav-bar-item">
                         <input type="submit" value="SEND" formaction="/send_transaction">
                     </li>
                     <!-- account information menu -->
-                    <li class="nav-bar-item">
-                        <label for="bid_input">BID: </label>
-                        <input id="bid_input" type="text" name="bid_input" value="{{ session['ba']['bid'] }}" readonly>
-                    </li>
-                    <li class="nav-bar-item">
-                        <label for="name_input">NAME: </label>
-                        <input id="name_input" type="text" name="name_input" value="{{ session['ba']['name'] }}" readonly>
-                    </li>
                     <li class="nav-bar-item logout">
                         <input type="submit" value="LOGOUT" formaction="/logout">
                     </li>
+                    <li class="nav-bar-item logout">
+                        <label for="bid_input">BID: </label>
+                        <input id="bid_input" type="text" name="bid_input" value="{{ session['ba']['bid'] }}" readonly size="4">
+                    </li>
+                    <li class="nav-bar-item logout">
+                        <label for="name_input">NAME: </label>
+                        <input id="name_input" type="text" name="name_input" value="{{ session['ba']['name'] }}" readonly>
+                    </li>
                 </ul>
+                {% block currcodes %}
+                    <datalist id="curr-codes">
+                        <option value="CZK"></option>
+                        {% for code in session["curr-codes"] %}
+                        <option value="{{ code }}">
+                        {% endfor %}
+                    </datalist>
+                {% endblock %}
             </form>
             <hr>
+        {% endblock %}
+        {% block banners %}
+            <div class="flash-messages">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class="flash">
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <h2>Account balance</h2>
+                    {% for key, value in session["ba"]["currency-balance"].items() %}
+                        <div class="card">
+                            <h3>{{ key }}</h3>
+                            <p>Balance: {{ value }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="column">
+                    <h2>Account transactions</h2>
+                    {% for trans in session["ba"]["transaction-list"] %}
+                        <div class="card">
+                            <h3>{{ trans["amount"] }} {{ trans["currency-code"] }}</h3>
+                            <p>Target bid: {{ trans["target-bid"] }}</p>
+                            <p>Date: {{ trans["date"] }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         {% endblock %}
     </div>
     
