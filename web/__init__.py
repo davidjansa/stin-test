@@ -8,7 +8,7 @@ ggpass = "svisqumhrixagvbc"
 """
 with open("dbpassword", "r") as file:
     dbpass = file.readline()
-with open("ggpassword", "r") as file:
+    ggemail = file.readline()
     ggpass = file.readline()
 """
 
@@ -22,13 +22,14 @@ account_db = db.account
 exchange_db = db.exchange
 transaction_db = db.transaction
 balance_db = db.balance
+main_currency = "CZK"
 
 def create_app():
     app = Flask(__name__, template_folder="../front/templates", static_folder="../front/static")
 
     # app configuration
     app.config["SECRET_KEY"] = "stintest"
-    app.permanent_session_lifetime = timedelta(minutes=5)
+    app.permanent_session_lifetime = timedelta(minutes=15)
 
     # blueprint for routes
     from .routes import routes as routes_blueprint
