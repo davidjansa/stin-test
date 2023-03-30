@@ -3,10 +3,10 @@ name: Flask Application Test with Pytest
 on:
   push:
     branches:
-      - web
+      - 'web'
   pull_request:
     branches:
-      - web
+      - 'web'
 
 jobs:
   test:
