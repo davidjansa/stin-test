@@ -5,4 +5,4 @@ Werkzeug
 datetime
 Gunicorn
 pymongo
-mongomock
+pytest-timeout
