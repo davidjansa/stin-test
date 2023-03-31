@@ -102,7 +102,7 @@ class BankAccount():
             raise ValueError("E-mail format is not valid.")
 
 class TransactionList():
-    def __init__(self, transaction_list : list[dict]):
+    def __init__(self, transaction_list):
         """bank account transaction list
 
         Args:
@@ -110,7 +110,7 @@ class TransactionList():
         """
         self.transaction_list = transaction_list
 
-    def to_output(self) -> list[dict]:
+    def to_output(self):
         """transform transaction list to specific format
 
         Returns:
