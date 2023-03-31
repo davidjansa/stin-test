@@ -1,4 +1,5 @@
 import pytest
+import pytest_timeout
 from flask import session
 from web import create_app, account_db
 from web.objects import BankAccount, TransactionList, CurrencyBalance
