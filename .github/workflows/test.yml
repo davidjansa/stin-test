@@ -2,11 +2,9 @@ name: Flask Application Test with Pytest
 
 on:
   push:
-    branches:
-      - 'web'
+    branches: [ main ]
   pull_request:
-    branches:
-      - 'web'
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
